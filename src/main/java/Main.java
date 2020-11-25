@@ -4,6 +4,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -12,9 +13,8 @@ public class Main {
         String[] inputString = {"Andrzej", "Romuald", "Lukasz", "Michal", "Jaroslaw"};
         //  exA(inputInt);
         //  exB(inputInt);
-        //  exC(inputString);
-        exD();
-
+         // exC(inputString);
+       exD();
     }
 
     public static void exA(int[] input) {
@@ -70,50 +70,19 @@ public class Main {
                 System.out.println(stringArray[i] + ", " + false);
             }
         }
-
     }
 
-
-
     public static void exD(){
-
-//    LocalTime today = LocalTime.of();
-//        System.out.println(today.getHour());
-//        System.out.println(today.getMinute());
-//        System.out.println(today.getSecond());
-//      //  System.out.println(today.getDayOfWeek());
-//
-//        System.out.println(today);
-//        System.out.println(LocalTime.parse("07:15:02"));
-
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime end = LocalDateTime.of(2021,04,11,14,00);
-        Duration duration = Duration.between(end, today);
-        long second = duration.getSeconds();
-        long absSecond= Math.abs(second);
-        String positive = String.format(
-                "%d:%02d:%02d:%02d",
-                (absSecond / 3600),
-                (absSecond % 3600)/24,
-                (absSecond % 3600)/60,
-                absSecond %60);
+        Duration duration = Duration.between(today, end);
 
-//        String hms = String.format("%d:%02d:%02d",
-//                duration.toHours(),
-//                duration.toMinutesPart(),
-//                duration.toSecondsPart());
+        int day = (int)TimeUnit.SECONDS.toDays(duration.getSeconds());
+        long hours = TimeUnit.SECONDS.toHours(duration.getSeconds()) - (day *24);
+        long minute = TimeUnit.SECONDS.toMinutes(duration.getSeconds()) - (TimeUnit.SECONDS.toHours(duration.getSeconds())* 60);
+        long second = TimeUnit.SECONDS.toSeconds(duration.getSeconds()) - (TimeUnit.SECONDS.toMinutes(duration.getSeconds()) *60);
 
-//                absSecond / 3600,
-//                (absSecond % 3600)/60,
-//                absSecond %60);
-
-
-
-
-        System.out.println(positive);
-        System.out.println(end);
-        System.out.println(duration);
-
+        System.out.println("do końca kursu pozostało: "+ day + " dni " + hours + " godzin " + minute + " minut " + second + " sekund ");
 
     }
 }

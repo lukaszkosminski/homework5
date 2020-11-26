@@ -12,7 +12,7 @@ public class Main {
 //        exB(inputInt);
 //        exC(inputString);
 //        exD();
-//        exE("Tomek");
+        exE("Tomek");
     }
 
     public static int[] exA(int[] input) {
@@ -92,9 +92,6 @@ public class Main {
         students.put("Lech", 2);
         students.put("Tomek", null);
 
-        boolean containskey = students.containsKey(name);
-        System.out.println(containskey);
-
         if (!students.containsKey(name)) {
             System.out.println("Nie znaleziono kursanta o imieniu " + name);
         } else {
@@ -107,8 +104,8 @@ public class Main {
         }
     }
 
-    public static Optional<Integer> getGrade(Map<String, Integer> students, String imie) {
-        return Optional.ofNullable(students.get(imie));
+    public static Optional<Integer> getGrade(Map<String, Integer> students, String name) {
+        return Optional.ofNullable(students.get(name));
     }
 }
 
